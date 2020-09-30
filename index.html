@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guesser</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto game p-4">
+        <h1>Number Guesser</h1>
+        <p>Guess a number between <span class="min-Num">1</span> and <span class="max-Num">10</span></p>
+        <div class="input-group">
+          <input type="number" id="input-Guess" class="form-control mr-3" placeholder="Enter your guess...">
+          <input type="submit" class="btn btn-light" value="Guess">
+        </div>
+        <p class="results mt-3"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+
+</html>
