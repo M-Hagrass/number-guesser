@@ -12,13 +12,13 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 mx-auto game p-4">
+      <div id="game" class="col-md-6 mx-auto p-4">
         <h1>Number Guesser</h1>
-        <p>Guess a number between <span class="min-Num">1</span> and <span class="max-Num">10</span></p>
-        <div class="input-group">
-          <input type="number" id="input-Guess" class="form-control mr-3" placeholder="Enter your guess...">
-          <input type="submit" class="btn btn-light" value="Guess">
-        </div>
+        <p>Guess a number between <span class="minNum"></span> and <span class="maxNum"></span></p>
+        <form class="input-group">
+          <input type="number" id="inputGuess" class="form-control mr-3" placeholder="Enter your guess...">
+          <input type="submit" class="btn btn-light btnSubmit" value="Guess">
+        </form>
         <p class="results mt-3"></p>
       </div>
     </div>
