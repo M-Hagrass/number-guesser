@@ -6,9 +6,10 @@ const game = document.querySelector("#game"),
       btnSubmit = document.querySelector(".btnSubmit"),
       results = document.querySelector(".results");
 // Game values variables
-let winningNum = 5,
-  min = 1;
-    (max = 10), (guessesLeft = 3);
+let min = 1.4;
+let max = 4.6;
+let winningNum = getRandomNum(min, max);
+let guessesLeft = 3;
 
 // assign what is the max and min numbers
 maxNum.textContent = max;
@@ -39,15 +40,15 @@ let validation = (guesserNumber) => {
   } else {
     // check the game
     checkGame(guesserNumber);
-    console.log("FALSE");
   }
-};
+}
 
 // Create resultMessage function
 let resultMessage = (message, color) => {
   results.textContent = message;
   results.style.color = color;
   inputGuess.style.borderColor = color;
+  inputGuess.value = "";
 };
 
 // Create hideResultMessage
@@ -79,4 +80,11 @@ let checkGame = (guesserNumber) => {
 let playAgain = ()=>{
   inputGuess.disabled = true;
   btnSubmit.value = 'Play Again';
+}
+
+// Create getRandomNum function
+function getRandomNum (min, max){
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
