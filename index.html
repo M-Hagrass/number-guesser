@@ -12,14 +12,32 @@
 <body>
   <div class="container">
     <div class="row">
-      <div id="game" class="col-md-6 mx-auto p-4">
+      <div id="game" class="col-lg-6 mx-auto p-4">
         <h1>Number Guesser</h1>
-        <p>Guess a number between <span class="minNum"></span> and <span class="maxNum"></span></p>
-        <form class="input-group">
-          <input type="number" id="inputGuess" class="form-control mr-3" placeholder="Enter your guess...">
-          <input type="submit" class="btn btn-light btnSubmit" value="Guess">
+        <p><strong>Note: </strong>You could set the minimum and the maximum numbers that you want to guess around them, by
+          default the numbers between 1 and 10</p>
+        <form>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">From</span>
+            </div>
+            <input type="number" id="inputMin" class="entries form-control mr-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">To</span>
+            </div>
+            <input type="number" id="inputMax" class="entries form-control">
+          </div>
         </form>
-        <p class="results mt-3"></p>
+        <form>
+          <p class="warningForSet text-center "></p>
+          <p class="text-center">Guess a number between <span class="minNum text-danger"></span> and <span
+              class="maxNum text-danger"></span></p>
+          <div class="input-group mb-3">
+            <input type="number" id="inputGuess" class="form-control mr-3" placeholder="Enter your guess...">
+            <input type="submit" class="btn btn-secondary btnSubmit " value="Guess">
+            </div>
+        </form>
+        <p class="warningForGuess mt-3"></p>
       </div>
     </div>
   </div>
