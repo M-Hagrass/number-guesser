@@ -12,31 +12,43 @@ const warningForSet = document.querySelector(".warningForSet");
 // Game values variables
 let min = 1;
 let max = 10;
+inputMin.value = min;
+inputMax.value = max;
 let guessesLeft = 3;
 
 // assign what is the max and min numbers
 maxNum.textContent = max;
 minNum.textContent = min;
 
-// Add the listener to entries
-entries.forEach(function (entry) {
-  entry.addEventListener("keyup", function setEntries(e) {
-    // Hide the resultMessage if it's exists
-    hideResultMessage(entry, warningForSet);
-    if (!entry.value.match(/^[0-9]+$/)) {
+// Add the listener to set-values inputs
+entries.forEach((entry) => {
+  entry.addEventListener("focusout", function setEntries(e) {
+    // Get the value from 'input from'
+    let inputFrom = parseInt(entries[0].value);
+    // Get the value from 'input to'
+    let inputTo = parseInt(entries[1].value);
+    if (!entry.value.match(/^[0-9]+$/) || inputFrom === inputTo) {
       resultMessage(
-        `The value should be an integer number please recheck`,
+        `The values should be an integer number,<br>Not equal each other or empty so please recheck`,
         "red",
         entry,
         warningForSet
       );
     } else {
-      if(!isNaN(parseInt(entries[0].value))) min = parseInt(entries[0].value);
-      if(!isNaN(parseInt(entries[1].value))) max = parseInt(entries[1].value);
-      
+      if (!isNaN(inputFrom)) {
+        min = inputFrom;
+        hideResultMessage(entry, false);
+      }
+      if (!isNaN(inputTo)) {
+        max = inputTo;
+        hideResultMessage(entry, false);
+      } 
       // assign what is the max and min numbers
       minNum.textContent = min;
       maxNum.textContent = max;
+      if (!isNaN(inputFrom) && !isNaN(inputTo)) {
+        hideResultMessage(entry, warningForSet);
+      }
     }
   });
 });
@@ -45,10 +57,14 @@ entries.forEach(function (entry) {
 game.addEventListener("submit", (e) => {
   e.preventDefault();
   entries.forEach(function (entry) {
+    // Hide warningForSet if it's exists
+    hideResultMessage(entry, warningForSet)
     entry.disabled = true;
+    inputMin.value = min;
+    inputMax.value = max;
   });
   let guesserNumber = parseInt(inputGuess.value);
-  // Hide the resultMessage if it's exists
+  // Hide the warningForGuess if it's exists
   hideResultMessage(inputGuess, warningForGuess);
   if (btnSubmit.value === "Guess") {
     // validation
@@ -63,7 +79,7 @@ game.addEventListener("submit", (e) => {
 let validation = (guesserNumber) => {
   if (isNaN(guesserNumber) || guesserNumber < min || guesserNumber > max) {
     resultMessage(
-      `Not valid number, the number should be from ${min} to ${max}`,
+      `Not valid numbers, the numbers should be from ${min} to ${max}`,
       "red",
       inputGuess,
       warningForGuess
@@ -76,7 +92,7 @@ let validation = (guesserNumber) => {
 
 // Create resultMessage function
 let resultMessage = (message, color, input, warning) => {
-  warning.textContent = message;
+  warning.innerHTML = message;
   warning.style.color = color;
   input.style.borderColor = color;
   input.value = "";
