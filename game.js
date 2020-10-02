@@ -79,7 +79,7 @@ game.addEventListener("submit", (e) => {
 let validation = (guesserNumber) => {
   if (isNaN(guesserNumber) || guesserNumber < min || guesserNumber > max) {
     resultMessage(
-      `Not valid numbers, the numbers should be from ${min} to ${max}`,
+      `Not valid numbers, the numbers should be in range (${min} - ${max})`,
       "red",
       inputGuess,
       warningForGuess
