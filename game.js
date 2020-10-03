@@ -12,15 +12,15 @@ const warningForSet = document.querySelector(".warningForSet");
 // Game values variables
 let min = 1;
 let max = 10;
+let guessesLeft = 3;
 inputMin.value = min;
 inputMax.value = max;
-let guessesLeft = 3;
 
-// assign what is the max and min numbers
+// assign and show what is the max and min numbers on the screen
 maxNum.textContent = max;
 minNum.textContent = min;
 
-// Add the listener to set-values inputs
+// Add the listener to set manually minimum and the maximum numbers
 entries.forEach((entry) => {
   entry.addEventListener("focusout", function setEntries(e) {
     // Get the value from 'input from'
@@ -53,7 +53,7 @@ entries.forEach((entry) => {
   });
 });
 
-// Add the listener to the form
+// Add the listener to check the Guess
 game.addEventListener("submit", (e) => {
   e.preventDefault();
   entries.forEach(function (entry) {
@@ -67,17 +67,18 @@ game.addEventListener("submit", (e) => {
   // Hide the warningForGuess if it's exists
   hideResultMessage(inputGuess, warningForGuess);
   if (btnSubmit.value === "Guess") {
-    // validation
+    // Start validations
     validation(guesserNumber);
 
   } else {
+    // play the game again
     window.location.reload();
   }
 });
 
 // Create validation function
 let validation = (guesserNumber) => {
-  if (isNaN(guesserNumber) || guesserNumber < min || guesserNumber > max) {
+  if (isNaN(guesserNumber) || guesserNumber < Math.min(min, max) || guesserNumber > Math.max(min, max)) {
     resultMessage(
       `Not valid numbers, the numbers should be in range (${min} - ${max})`,
       "red",
